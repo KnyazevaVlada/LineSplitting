@@ -7,9 +7,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/*
-Хуан Хуанович
-*/
 
 public class Solution {
     public static final List<Person> PEOPLE = new ArrayList<>();
@@ -20,11 +17,11 @@ public class Solution {
         String [] list;
         String line;
 
-        try(BufferedReader fileReader = new BufferedReader(new FileReader(args[0]))) {
+        try(BufferedReader fileReader = new BufferedReader(new FileReader(args[0]))) { //для удобства чтения использую буфер
             while ((line = fileReader.readLine()) != null) {
-                list = line.split("(?<=\\D) (?=\\d)");
+                list = line.split("(?<=\\D) (?=\\d)"); //использую ретроперспективную проверку, чтобы разделить имя и дату рождения
                 name = list[0];
-                birthdate = new SimpleDateFormat("dd MM yyyy").parse(list[1]);
+                birthdate = new SimpleDateFormat("dd MM yyyy").parse(list[1]); //парсим дату по заданному шаблону
                 PEOPLE.add(new Person(name,birthdate));
             }
         } catch (ParseException e) {
